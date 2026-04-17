@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <pthread.h>
+
+// Thread function
+void* myThread(void* arg)
+{
+    printf("Hello from THREAD\n");
+    return NULL;
+}
+
+int main()
+{
+    pthread_t t1;
+    // Create thread
+    pthread_create(&t1, NULL, myThread, NULL);
+    pthread_join(t1, NULL);
+    // ❌ No pthread_join()
+    printf("Hello from MAIN (Parent)\n");
+
+    return 0;
+}
