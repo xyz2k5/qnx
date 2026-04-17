@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <sys/neutrino.h>
+int main()
+{
+ int pid, chid, coid;
+ int x = 5, y;
+ printf("Enter PID and CHID: ");
+ scanf("%d %d", &pid, &chid);
+ coid = ConnectAttach(0, pid, chid, 0, 0);
+ MsgSend(coid, &x, sizeof(x), &y, sizeof(y));
+ printf("Result = %d\n", y);
+ return 0;
+}
