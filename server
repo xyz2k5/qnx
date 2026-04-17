@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <sys/neutrino.h>
+#include <unistd.h>
+int main()
+{
+ int chid = ChannelCreate(0);
+ int rcvid;
+ int x, y;
+ printf("Server PID=%d CHID=%d\n", getpid(), chid);
+ while (1) {
+ rcvid = MsgReceive(chid, &x, sizeof(x), NULL);
+ y = x * x; // simple processing
+ MsgReply(rcvid, 0, &y, sizeof(y));
+ }
+}
+
+
+
+
